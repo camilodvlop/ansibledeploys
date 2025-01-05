@@ -1,0 +1,14 @@
+- name: GCP bucket for learning purposes
+  hosts: localhost
+  vars_files:
+      - config1.yml
+  tasks:
+    - name: Task to Create a GCP Storage bucket
+      google.cloud.gcp_storage_bucket:
+        name: storage-bucket-for-test
+        location: US
+        storage_class: STANDARD
+        project: "{{ project_id }}"
+      register: bucket
+    - debug:
+        var: bucket

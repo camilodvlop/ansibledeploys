@@ -1,2 +1,2 @@
 # ansibledeploys
-deploiment of different artifacts using ansible and GPC, Azure and AWS
+Deployment of different artifacts using ansible with GPC, Azure and AWS
