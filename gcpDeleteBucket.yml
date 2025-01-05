@@ -1,14 +1,14 @@
-- name: GCP bucket for learning purposes
+- name: ansible GCP bucket for learning purposes
   hosts: localhost
   vars_files:
       - config1.yml
   tasks:
-    - name: Task to Create a GCP Storage bucket
+    - name: Task to delete a GCP Storage bucket
       google.cloud.gcp_storage_bucket:
         name: storage-bucket-for-test
-        location: US
-        storage_class: STANDARD
+        location: US        
         project: "{{ project_id }}"
+        state: absent
         auth_kind: serviceaccount
         service_account_file: "{{ lookup('env', 'GOOGLE_APPLICATION_CREDENTIALS') }}"        
       register: bucket
