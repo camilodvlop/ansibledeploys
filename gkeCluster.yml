@@ -1,0 +1,21 @@
+- name: ansible Creation of GKE Cluster for learning purposes
+  hosts: localhost
+  tasks:
+    - name: Task to create a GKE Cluster
+      google.cloud.gcp_container_cluster:
+        name: gke-cluster-for-test
+        location: us-central1-a
+        initial_node_count: 3
+        project: "{{ project_id }}"
+        auth_kind: serviceaccount
+        service_account_file: "{{ lookup('env', 'GOOGLE_APPLICATION_CREDENTIALS') }}"    
+        zone: us-central1-a
+        network: default
+        subnetwork: default
+        node_config:
+          machine_type: e2-medium
+          oauth_scopes:
+            - https://www.googleapis.com/auth/cloud-platform
+      register: gke_cluster
+    - debug:
+        var: gke_cluster
